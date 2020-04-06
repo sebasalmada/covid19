@@ -130,7 +130,7 @@ async function grafico() {
         borderColor: [
         'rgba(0, 0, 255, .7)',
         ],
-        borderWidth: 2
+        borderWidth: 1
         },
         {
         label: "Infectados x Día",
@@ -141,7 +141,7 @@ async function grafico() {
         borderColor: [
         'rgba(0, 0, 255, .7)',
         ],
-        borderWidth: 2
+        borderWidth: 1
         },
         {
         label: "Total Muertes",
@@ -152,7 +152,7 @@ async function grafico() {
         borderColor: [
         'rgba(255, 0, 0, .7)',
         ],
-        borderWidth: 2
+        borderWidth: 1
         },
         {
         label: "Muertes x Día",
@@ -163,7 +163,7 @@ async function grafico() {
         borderColor: [
         'rgba(255, 0, 0, .7)',
         ],
-        borderWidth: 2
+        borderWidth: 1
         },
         {
         label: "Recuperados",
@@ -174,7 +174,7 @@ async function grafico() {
         borderColor: [
         'rgba(0, 255, 0, .7)',
         ],
-        borderWidth: 2
+        borderWidth: 1
         },
         {
         label: "Promedio Infectados por Día",
@@ -185,7 +185,7 @@ async function grafico() {
         borderColor: [
         'rgba(0, 0, 255, 1)',
         ],
-        borderWidth: 2
+        borderWidth: 1
         },
         {
         label: "Promedio Muertes por Día",
@@ -196,7 +196,7 @@ async function grafico() {
         borderColor: [
         'rgba(255, 0, 0, 1)',
         ],
-        borderWidth: 2
+        borderWidth: 1
         },
         {
         label: "Porcentaje Muertes / Infectados",
@@ -207,7 +207,7 @@ async function grafico() {
         borderColor: [
         'rgba(0, 0, 0, 1)',
         ],
-        borderWidth: 2
+        borderWidth: 1
         }
         ]
         },
