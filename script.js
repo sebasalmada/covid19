@@ -102,6 +102,18 @@ function pordia() {
     }
 }
 
+async function card() {
+    let tituloPais = document.querySelector('.card-title');
+    tituloPais.innerHTML = '<p>' + pais + '<p>';
+    let urlFinal = 'https://covid19.mathdro.id/api/countries/' + pais;
+    let resFinal = await fetch(urlFinal);
+    let dataFinal = await resFinal.json();
+    console.log(dataFinal);
+    let subtitulos = document.querySelectorAll('.card-subtitle');
+    subtitulos[0].innerHTML = 'Infectados: ' + await dataFinal.confirmed.value;
+    subtitulos[1].innerHTML = 'Muertes: ' + await dataFinal.deaths.value;
+    subtitulos[2].innerHTML = 'Recuperados: ' + await dataFinal.recovered.value;
+}
 
 async function grafico() {
     var ctxL =  await document.getElementById("lineChart").getContext('2d');
@@ -203,12 +215,10 @@ async function grafico() {
         responsive: true
         }
     });
-}
- 
-
-     
+}   
 
 window.onload = async function() {
+    await this.card();
     await this.carga();
     await this.pordia();
     await this.grafico();

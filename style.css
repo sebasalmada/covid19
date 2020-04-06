@@ -1,10 +1,43 @@
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+nav {
+    text-align: center;
+    background-color: black;
+    color: white;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 36px;
+    padding: 2%;
+
+}
+
 .chart {
-    padding: 5%;
+    padding: 2% 10% 10% 10%;
 }
 
 .paiselegir {
-    margin: 5%;
+    margin: 2%;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.tarjeta {
+    margin: 2%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-title{
+    font-weight: bold;
+}
+
+footer {
+    background-color: black;
+    color: white;
+    font-size: 14px;
+    padding: 2%;
 }

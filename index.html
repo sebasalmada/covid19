@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
     <!-- Google Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
     <!-- Bootstrap core CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
     <!-- Material Design Bootstrap -->
@@ -24,9 +25,28 @@
     
 </head>
 <body>
+    <nav>
+        <img src="./covid.png" alt="" height="50px">
+        <div>Covid19</div>
+    </nav>
+    <div class="tarjeta">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title"></h5>
+              <h6 class="card-subtitle mb-2 text-muted"></h6>
+              <h6 class="card-subtitle mb-2 text-muted"></h6>
+              <h6 class="card-subtitle mb-2 text-muted"></h6>
+              <p class="card-text"></p>
+            </div>
+        </div>
+    </div>
     <div class="paiselegir"><select id="paises"></select></div>
     
     <canvas id="lineChart" class="chart"></canvas>
+    <footer>
+        <div>developed by @sebasalmada</div>
+    </footer>
     <script src="script.js"></script>
+
 </body>
 </html>
