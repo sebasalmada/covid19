@@ -110,9 +110,9 @@ async function card() {
     let dataFinal = await resFinal.json();
     console.log(dataFinal);
     let subtitulos = document.querySelectorAll('.card-subtitle');
-    subtitulos[0].innerHTML = 'Infectados: ' + await dataFinal.confirmed.value;
-    subtitulos[1].innerHTML = 'Muertes: ' + await dataFinal.deaths.value;
-    subtitulos[2].innerHTML = 'Recuperados: ' + await dataFinal.recovered.value;
+    subtitulos[0].innerHTML = 'Infectados: ' + await new Intl.NumberFormat("de-DE").format(dataFinal.confirmed.value);
+    subtitulos[1].innerHTML = 'Muertes: ' + await new Intl.NumberFormat("de-DE").format(dataFinal.deaths.value);
+    subtitulos[2].innerHTML = 'Recuperados: ' + await new Intl.NumberFormat("de-DE").format(dataFinal.recovered.value);
 }
 
 async function grafico() {
