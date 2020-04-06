@@ -41,3 +41,10 @@ footer {
     font-size: 14px;
     padding: 2%;
 }
+
+@media (max-width: 790px) {
+    .chart {
+        padding: 1% 1% 1% 1%;
+        height: 200px;
+    }
+  }
