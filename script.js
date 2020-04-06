@@ -1,4 +1,4 @@
-let pais = 'Argentina';
+let pais = '';
 let confirmados =[];
 let muertes = [];
 let dias = [];
@@ -8,6 +8,14 @@ let recuperados = [];
 let porcentajeMuertes = [];
 let confirmadosDia = [];
 let muertesDia = [];
+let paises = [];
+
+if(localStorage.pais) {
+    pais = localStorage.pais;
+} else {
+    pais = 'Argentina'
+}
+
 
 async function cantidadConfirmados() {
     const url = 'https://api.covid19api.com/total/dayone/country/' + pais + '/status/confirmed';
@@ -22,6 +30,9 @@ async function cantidadConfirmados() {
         } else {
             confirmados.push(data[i].Cases)
         }
+    }
+    if(pais === 'Argentina') {
+        confirmados[28] = 968;
         
     }
 }
@@ -57,6 +68,15 @@ async function cantidadMuertos() {
             muertes.push(data[i].Cases)
         }
         
+    }
+}
+
+async function traerpaises() {
+    let url = 'https://covid19.mathdro.id/api/countries';
+    let response = await fetch(url);
+    let data = await response.json();
+    for(i = 0; i < data.countries.length; i ++) {
+        paises.push(await data.countries[i].name);
     }
 }
 
@@ -192,6 +212,16 @@ window.onload = async function() {
     await this.carga();
     await this.pordia();
     await this.grafico();
+    await this.traerpaises();
     
-
+    let lista = await document.getElementById('paises');
+    lista.innerHTML = '<option value="' + pais + '">' + pais + '</option>';
+    for (i = 0; i < paises.length; i++) {
+        lista.innerHTML = lista.innerHTML + '<option value="' + paises[i] + '">' + paises[i] + '</option>';
+    }
+    lista.addEventListener('change', (e) => {
+        pais = e.target.value;
+        this.localStorage.setItem('pais', pais);
+        this.location.reload();
+    })
 }
