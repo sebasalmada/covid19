@@ -22,17 +22,19 @@ async function cantidadConfirmados() {
     let response = await fetch(url);
     let data = await response.json();
     for(i = 0; i < data.length; i++) {
-        if(i === data.length - 1) {
-            let urlFinal = 'https://covid19.mathdro.id/api/countries/' + pais;
+        confirmados.push(data[i].Cases)
+    }
+    let urlFinal = 'https://covid19.mathdro.id/api/countries/' + pais;
             let resFinal = await fetch(urlFinal);
             let dataFinal = await resFinal.json();
             confirmados.push(dataFinal.confirmed.value)
-        } else {
-            confirmados.push(data[i].Cases)
-        }
-    }
     if(pais === 'Argentina') {
         confirmados[28] = 968;
+        confirmados[32] = 1353;
+        confirmados[19] = 225;
+        confirmados[20] = 265;
+        confirmados[21] = 301;
+        
         
     }
 }
@@ -42,16 +44,12 @@ async function cantidadRecuperados() {
     let response = await fetch(url);
     let data = await response.json();
     for(i = 0; i < data.length; i++) {
-        if(i === data.length - 1) {
-            let urlFinal = 'https://covid19.mathdro.id/api/countries/' + pais;
-            let resFinal = await fetch(urlFinal);
-            let dataFinal = await resFinal.json();
-            recuperados.push(dataFinal.recovered.value)
-        } else {
-            recuperados.push(data[i].Cases)
-        }
-        
+        recuperados.push(data[i].Cases)
     }
+    let urlFinal = 'https://covid19.mathdro.id/api/countries/' + pais;
+    let resFinal = await fetch(urlFinal);
+    let dataFinal = await resFinal.json();
+    recuperados.push(dataFinal.recovered.value)
 }
 
 async function cantidadMuertos() {
@@ -59,16 +57,12 @@ async function cantidadMuertos() {
     let response = await fetch(url);
     let data = await response.json();
     for(i = 0; i < data.length; i++) {
-        if(i === data.length - 1) {
-            let urlFinal = 'https://covid19.mathdro.id/api/countries/' + pais;
-            let resFinal = await fetch(urlFinal);
-            let dataFinal = await resFinal.json();
-            muertes.push(dataFinal.deaths.value)
-        } else {
-            muertes.push(data[i].Cases)
-        }
-        
+        muertes.push(data[i].Cases)
     }
+    let urlFinal = 'https://covid19.mathdro.id/api/countries/' + pais;
+    let resFinal = await fetch(urlFinal);
+    let dataFinal = await resFinal.json();
+    muertes.push(dataFinal.deaths.value)
 }
 
 async function traerpaises() {
