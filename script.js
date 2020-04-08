@@ -7,6 +7,7 @@ let promedioMuertes = [];
 let recuperados = [];
 let porcentajeMuertes = [];
 let confirmadosDia = [];
+let recuperadosDia = [];
 let muertesDia = [];
 let paises = [];
 
@@ -25,9 +26,11 @@ async function cantidadConfirmados() {
         confirmados.push(data[i].Cases)
     }
     let urlFinal = 'https://covid19.mathdro.id/api/countries/' + pais;
-            let resFinal = await fetch(urlFinal);
-            let dataFinal = await resFinal.json();
-            confirmados.push(dataFinal.confirmed.value)
+    let resFinal = await fetch(urlFinal);
+    let dataFinal = await resFinal.json();
+    if(confirmados[confirmados.length - 1] !== dataFinal.confirmed.value) {
+        confirmados.push(dataFinal.confirmed.value)
+    }
     if(pais === 'Argentina') {
         confirmados[28] = 968;
         confirmados[32] = 1353;
@@ -49,7 +52,10 @@ async function cantidadRecuperados() {
     let urlFinal = 'https://covid19.mathdro.id/api/countries/' + pais;
     let resFinal = await fetch(urlFinal);
     let dataFinal = await resFinal.json();
-    recuperados.push(dataFinal.recovered.value)
+    if(recuperados[recuperados.length - 1] !== dataFinal.recovered.value) {
+        recuperados.push(dataFinal.recovered.value)
+    }
+    
 }
 
 async function cantidadMuertos() {
@@ -62,7 +68,9 @@ async function cantidadMuertos() {
     let urlFinal = 'https://covid19.mathdro.id/api/countries/' + pais;
     let resFinal = await fetch(urlFinal);
     let dataFinal = await resFinal.json();
-    muertes.push(dataFinal.deaths.value)
+    if(muertes[muertes.length - 1] !== dataFinal.deaths.value) {
+        muertes.push(dataFinal.deaths.value)
+    }
 }
 
 async function traerpaises() {
@@ -82,7 +90,7 @@ async function carga() {
         dias.push(i + 1)
         promedioConfirmados.push(parseInt((confirmados[i] / dias [i]) * 100) / 100);
         promedioMuertes.push(parseInt((muertes[i] / dias [i]) * 100) / 100);
-        porcentajeMuertes.push(parseInt((muertes[i] / confirmados [i]) * 1000) / 1000)
+        porcentajeMuertes.push(parseInt((muertes[i] / confirmados [i]) * 1000) / 1000);
         
     };
 }
@@ -90,9 +98,11 @@ async function carga() {
 function pordia() { 
     confirmadosDia.push(confirmados[0]); 
     muertesDia.push(muertes[0]);
+    recuperadosDia.push(recuperados[0]);
     for(i = 1; i < confirmados.length; i ++) { 
         confirmadosDia.push(confirmados[i] - confirmados[i - 1]);
-        muertesDia.push(muertes[i] - muertes [i - 1]);
+        muertesDia.push(muertes[i] - muertes[i - 1]);
+        recuperadosDia.push(recuperados[i] - recuperados[i - 1]);
     }
 }
 
@@ -170,6 +180,17 @@ async function grafico() {
         ],
         borderWidth: 1
         },
+        {
+            label: "Recuperados x Día",
+            data: recuperadosDia,
+            backgroundColor: [
+            'rgba(0, 255, 0, .2)',
+            ],
+            borderColor: [
+            'rgba(0, 255, 0, .7)',
+            ],
+            borderWidth: 1
+            },
         {
         label: "Promedio Infectados por Día",
         data: promedioConfirmados,
