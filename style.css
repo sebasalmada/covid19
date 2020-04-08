@@ -57,7 +57,11 @@ nav {
     color: white;
 }
 
-
+.nota {
+    font-size: 14px;
+    padding: 2%;
+    font-family: 'Roboto', sans-serif;
+}
 
 @media (max-width: 820px) {
     .chart {
