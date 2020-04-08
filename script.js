@@ -52,9 +52,7 @@ async function cantidadRecuperados() {
     let urlFinal = 'https://covid19.mathdro.id/api/countries/' + pais;
     let resFinal = await fetch(urlFinal);
     let dataFinal = await resFinal.json();
-    if(recuperados[recuperados.length - 1] !== dataFinal.recovered.value) {
-        recuperados.push(dataFinal.recovered.value)
-    }
+    recuperados.push(dataFinal.recovered.value)
     
 }
 
@@ -68,9 +66,7 @@ async function cantidadMuertos() {
     let urlFinal = 'https://covid19.mathdro.id/api/countries/' + pais;
     let resFinal = await fetch(urlFinal);
     let dataFinal = await resFinal.json();
-    if(muertes[muertes.length - 1] !== dataFinal.deaths.value) {
-        muertes.push(dataFinal.deaths.value)
-    }
+    muertes.push(dataFinal.deaths.value)
 }
 
 async function traerpaises() {
