@@ -4,6 +4,7 @@ let muertes = [];
 let dias = [];
 let promedioConfirmados = [];
 let promedioMuertes = [];
+let promedioMuertes7 = 0;
 let recuperados = [];
 let porcentajeMuertes = [];
 let confirmadosDia = [];
@@ -102,6 +103,16 @@ function pordia() {
     }
 }
 
+function promedioMuertesSiete() {
+    let diainicial = muertes.length - 7
+    let muertestotal = 0
+    for(i = 0; i < 7; i++) {
+        muertestotal = muertestotal + muertesDia[diainicial + i]
+    }
+    promedioMuertes7 = muertestotal / 7
+    console.log(promedioMuertes7)
+}
+
 async function card() {
     let tituloPais = document.querySelector('.card-title');
     tituloPais.innerHTML = '<p>' + pais + '<p>';
@@ -110,9 +121,10 @@ async function card() {
     let dataFinal = await resFinal.json();
     console.log(dataFinal);
     let subtitulos = document.querySelectorAll('.card-subtitle');
-    subtitulos[0].innerHTML = 'Infectados: ' + await new Intl.NumberFormat("de-DE").format(dataFinal.confirmed.value);
-    subtitulos[1].innerHTML = 'Muertes: ' + await new Intl.NumberFormat("de-DE").format(dataFinal.deaths.value);
-    subtitulos[2].innerHTML = 'Recuperados: ' + await new Intl.NumberFormat("de-DE").format(dataFinal.recovered.value);
+    subtitulos[0].innerHTML = 'Infectados: ' + new Intl.NumberFormat("de-DE").format(dataFinal.confirmed.value);
+    subtitulos[1].innerHTML = 'Muertes: ' + new Intl.NumberFormat("de-DE").format(dataFinal.deaths.value);
+    subtitulos[2].innerHTML = 'Recuperados: ' + new Intl.NumberFormat("de-DE").format(dataFinal.recovered.value);
+    subtitulos[3].innerHTML = 'Promedio Muertes x Día (últimos 7 días): ' + Math.round(promedioMuertes7 * 100) / 100;
 }
 
 async function grafico() {
@@ -229,11 +241,12 @@ async function grafico() {
 }   
 
 window.onload = async function() {
-    await this.card();
     await this.carga();
     await this.pordia();
     await this.grafico();
     await this.traerpaises();
+    await this.promedioMuertesSiete();
+    await this.card();
     
     let lista = await document.getElementById('paises');
     lista.innerHTML = '<option value="' + pais + '">' + pais + '</option>';
