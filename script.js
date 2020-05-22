@@ -104,7 +104,7 @@ function pordia() {
 }
 
 function promedioMuertesSiete() {
-    let diainicial = muertes.length - 7
+    let diainicial = muertes.length - 8
     let muertestotal = 0
     for(i = 0; i < 7; i++) {
         muertestotal = muertestotal + muertesDia[diainicial + i]
